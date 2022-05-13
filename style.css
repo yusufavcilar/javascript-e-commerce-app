@@ -16,7 +16,7 @@
 
 body {
     background-image: linear-gradient(rgb(111, 247, 229), rgb(75, 246, 112));
-    height: 100vh;
+    height: 100%;
 }
 
 li {
@@ -47,6 +47,14 @@ a {
 
 .navbar-options a {
     color: var(--yellow);
+}
+.fa-gifts {
+    border: 1px solid transparent;
+    background-color: red;
+    border-radius: 10px;
+    color: #FFF;
+    padding: 15px;
+    cursor: pointer;
 }
 
 .fa-solid {
@@ -88,26 +96,32 @@ a {
     display: flex;
 }
 
-.products-bar {
-    border: 1px solid grey;
+.btn-container {
+    width: 300px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid transparent;
     border-radius: 10px;
     margin-top: 20px;
     margin-left: 40px;
     height: 100;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     font-size: 0.85rem;
     text-align: center;
-    padding: 70px;
-    box-shadow: 10px 10px 10px rgb(193, 191, 191);
-}
-
-.products-bar h4 {
-    font-size: 1.5rem;
-    color: grey;
+    
 }
 
 .products-bar__categories {
-    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 15px;
+    background-color: rgb(247, 199, 121);
+    color: rgb(21, 20, 20);
+    font-size: 0.85rem;
+    box-shadow: 1px 10px 10px rgb(193, 191, 191);
 }
 
 .shop-menu {
@@ -142,7 +156,7 @@ a {
     background-color: rgb(251, 196, 93);
     color: #FFF;
     padding: 10px;
-    margin-top: 5px;
+    margin-top:10px;
     cursor: pointer;
 }
 

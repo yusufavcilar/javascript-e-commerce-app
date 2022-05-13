@@ -1,15 +1,18 @@
+const categoriesItem = ["All", "Household Appliances", "Clothes", "Technological tools", "Mobile Phone"]
 const shopMenu = document.querySelector(".shop-menu")
 const cart = document.querySelector('.cart')
 const cartMenu = document.querySelector(".cart-menu")
 const clearBtn = document.querySelector(".clear-btn")
+const btnContainer = document.querySelector(".btn-container")
 
 const products = [{
         id: 1,
-        name: "Refrigator",
+        name: "Household Appliances",
         description: "Samsung RT46K6000S8 No-Frost ",
         image: "./assets/refrigator.jpeg",
         price: 8799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Household Appliances"
     },
     {
         id: 2,
@@ -17,15 +20,17 @@ const products = [{
         description: "Philips PowerPro Compact FC9323/07 Süpürge",
         image: "./assets/süpürge.jpeg",
         price: 1299,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Household Appliances"
     },
     {
         id: 3,
-        name: "Phone",
+        name: "Mobile Phone",
         description: "Huawei P50 Pro 256 GB",
         image: "./assets/huawei.jpeg",
         price: 18799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Mobile Phone"
 
     },
     {
@@ -34,7 +39,8 @@ const products = [{
         description: "İpek Mobilya",
         image: "./assets/koltuk.jpeg",
         price: 2399,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Household Appliances"
 
     }, {
         id: 5,
@@ -42,47 +48,53 @@ const products = [{
         description: "Black Steel 9175 Modelli Fermuarlı Eşortman",
         image: "./assets/eşortman.jpeg",
         price: 399,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Clothes"
 
     }, {
         id: 6,
-        name: "PC",
+        name: "Technological tools",
         description: "Apple MacBook Air M1 Çip 8GB 256GB SSD macOS 13",
         image: "./assets/macbook.jpeg",
         price: 15799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Technological tools"
 
     }, {
         id: 7,
-        name: "Phone",
+        name: "Mobile Phone",
         description: "Xiaomi Mi 11T 256 GB 8 GB Ram ",
         image: "./assets/xiaomi.jpeg",
         price: 10799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Mobile Phone"
     }, {
         id: 8,
-        name: "Refrigator",
+        name: "Household Appliances",
         description: "Profilo BD2043WFNN 328 Lt No-Frost ",
         image: "./assets/profilo.jpeg",
         price: 5799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Household Appliances"
 
     }, {
         id: 9,
-        name: "Phone",
+        name: "Mobil Phone",
         description: "Samsung Galaxy S21 5G 128 GB",
         image: "./assets/samsung s21.jpeg",
         price: 9799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Mobile Phone"
 
     },
     {
         id: 10,
-        name: "PC",
+        name: "Technological tools",
         description: "Monster Tulpar T7 V25.1.2 Intel Core I7 11800H 16GB 1TB",
         image: "./assets/monster.jpeg",
         price: 28799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Technological tools"
     },
     {
         id: 11,
@@ -90,24 +102,27 @@ const products = [{
         description: "Adidas Superstar",
         image: "./assets/adidas.jpeg",
         price: 6499,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Clothes"
     },
     {
         id: 12,
-        name: "Phone",
+        name: "Mobile Phone",
         description: "İphone 13 Pro Max",
         image: "./assets/iphone13.jpeg",
         price: 28799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Mobile Phone"
 
     },
     {
         id: 13,
-        name: "Refrigator",
+        name: "Household Appliances",
         description: "Bosch KGN86AID1N No-Frost",
         image: "./assets/bosch.jpeg",
         price: 12799,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Household Appliances"
     },
     {
         id: 14,
@@ -115,24 +130,37 @@ const products = [{
         description: "Philips GC5037/80 Azur Elite Buharlı Ütü",
         image: "./assets/ütü.jpeg",
         price: 1699,
-        priceUnit: 'TL'
+        priceUnit: 'TL',
+        category: "Household Appliances"
     },
     {
         id: 15,
-        name: "Phone",
+        name: "Mobile Phone",
         description: "İphone 11",
         image: "./assets/iphone11.jpeg",
         price: 12799,
         priceUnit: 'TL',
-        categoryID: 1
-
+        category: "Mobile Phone"
     },
 ];
 
-const categories = [{
-    id: 1,
-    name: "Mobile Phone"
-}]
+
+let selectedCategory = "All"
+
+function creatCategories() {
+    categoriesItem.forEach((category) => {
+        btnContainer.innerHTML += `<button type="button" class="products-bar__categories" data-id="all">${category}</button>`
+    })
+
+    const btnAll = document.querySelectorAll(".products-bar__categories")
+
+    btnAll.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            selectedCategory = e.target.textContent;
+            shopItems();
+        })
+    })
+}
 
 let basket = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -140,15 +168,29 @@ let basket = JSON.parse(localStorage.getItem('cart')) || [];
 function shopItems() {
     shopMenu.innerHTML = ""
     products.forEach(item => {
-        shopMenu.innerHTML += `
-         <div class="shop-menu__item" data-id="${item.id}">
-            <img width="75" height="75" src="${item.image}" alt="${item.name}">
-            <div class="shop-menu__information">
-                <h2 class="shop-menu__text">${item.description}</h2>
-                <p class="shop-menu__price">${item.price} ${item.priceUnit}</p>
-                <button class="shop-menu__button">Add To Basket</button>
-            </div>
-        </div>`
+        if (selectedCategory.toLowerCase() === "all") {
+            shopMenu.innerHTML += `
+            <div class="shop-menu__item" data-id="${item.id}">
+               <img width="75" height="75" src="${item.image}" alt="${item.name}">
+               <div class="shop-menu__information">
+                   <h2 class="shop-menu__text">${item.description}</h2>
+                   <p class="shop-menu__price">${item.price} ${item.priceUnit}</p>
+                   <button class="shop-menu__button">Add To Basket</button>
+               </div>
+           </div>`
+        } else {
+            if (selectedCategory.toLowerCase() === item.category.toLowerCase()) {
+                shopMenu.innerHTML += `
+                <div class="shop-menu__item" data-id="${item.id}">
+                   <img width="75" height="75" src="${item.image}" alt="${item.name}">
+                   <div class="shop-menu__information">
+                       <h2 class="shop-menu__text">${item.description}</h2>
+                       <p class="shop-menu__price">${item.price} ${item.priceUnit}</p>
+                       <button class="shop-menu__button">Add To Basket</button>
+                   </div>
+               </div>`
+            }
+        }
     })
 
     const addToBasketButtons = document.querySelectorAll('.shop-menu__button');
@@ -169,3 +211,5 @@ function addToBasketClickHandler(event) {
     localStorage.setItem('cart', JSON.stringify(basket));
     cart.setAttribute('data-products', basket.length);
 }
+
+creatCategories()
