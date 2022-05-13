@@ -5,13 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>My Basket</title>
 </head>
 <body>
+    <nav class="navbar">
+        <div>
+            <img class="navbar-image" src="./assets/logo.png" alt="shop">
+        </div>
+        <div class="navbar-options">
+            <li>
+                <a href="index.html">Homepage</a>
+            </li>
+        </div>
+        <div class="navbar-right">
+            <a href="cart.html" class="cart" data-products="0">
+                <i class="fa-solid fa-cart-shopping"><span class="mybasket">My Basket</span></i>
+            </a>
+        </div>
+    </nav>
+    <div class="cart-menu"></div>
+    <div class="cart-menu container"></div>
+    <div>
+        <button class="clear-btn">Clear All</button>
+    </div>
     <script src="./cart.js"></script>
 </body>
 </html>

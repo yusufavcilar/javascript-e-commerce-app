@@ -1,10 +1,11 @@
 :root {
---purple: #6A5495;
---pink: #ED5EDD;
---green: #8BDB81;
---yellow: #E7ED9B;
---blue: #6a9dfc;
-font-family: 'Roboto', sans-serif;
+    --purple: #6A5495;
+    --pink: #ED5EDD;
+    --green: #8BDB81;
+    --yellow: #E7ED9B;
+    --blue: #6a9dfc;
+    --red: #fa0909;
+    font-family: 'Roboto', sans-serif;
 }
 
 * {
@@ -14,7 +15,8 @@ font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-image: linear-gradient(rgb(111, 247, 229) ,rgb(75, 246, 112));
+    background-image: linear-gradient(rgb(111, 247, 229), rgb(75, 246, 112));
+    height: 100vh;
 }
 
 li {
@@ -42,6 +44,7 @@ a {
 .navbar-options {
     display: flex;
 }
+
 .navbar-options a {
     color: var(--yellow);
 }
@@ -53,6 +56,28 @@ a {
     color: #FFF;
     padding: 15px;
     cursor: pointer;
+}
+
+.navbar-right .cart {
+    margin-right: 20px;
+    position: relative;
+    font-size: 15px;
+}
+
+.navbar-right .cart::after {
+    content: attr(data-products);
+    position: absolute;
+    top: -25px;
+    right: -15px;
+    background-color: var(--red);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
 }
 
 .mybasket {
@@ -71,9 +96,9 @@ a {
     height: 100;
     background-color: rgb(255, 255, 255);
     font-size: 0.85rem;
-   text-align: center;
-   padding: 70px;
-   box-shadow: 10px 10px 10px rgb(193, 191, 191);
+    text-align: center;
+    padding: 70px;
+    box-shadow: 10px 10px 10px rgb(193, 191, 191);
 }
 
 .products-bar h4 {
@@ -84,8 +109,6 @@ a {
 .products-bar__categories {
     margin-top: 20px;
 }
-
-
 
 .shop-menu {
     display: flex;
@@ -99,13 +122,13 @@ a {
     text-align: center;
     width: 300px;
     padding: 20px;
-    border: 1px solid var(--pink);
-    border-radius: 10px;  
+    border: 3px solid var(--pink);
+    border-radius: 10px;
 }
 
 .shop-menu__text {
     font-size: 0.85rem;
-    color:var(--blue)
+    color: var(--blue)
 }
 
 .shop-menu__price {
@@ -120,5 +143,28 @@ a {
     color: #FFF;
     padding: 10px;
     margin-top: 5px;
+    cursor: pointer;
 }
 
+.clear-btn {
+    display: flex;
+    background-color: red;
+    color: #FFF;
+    padding: 15px;
+    margin: 0 auto;
+    border-color: red;
+    border-radius: 15px;
+}
+
+.message {
+    margin: 120px auto;
+}
+
+.cart-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 40px;
+}

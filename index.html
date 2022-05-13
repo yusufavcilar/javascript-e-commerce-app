@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
     <title>Homepage</title>
 </head>
-
 <body>
     <nav class="navbar">
         <div>
@@ -23,8 +21,10 @@
                 <a href="index.html">Homepage</a>
             </li>
         </div>
-        <div>
-            <i class="fa-solid fa-cart-shopping"><span class="mybasket">My Basket</span></i>
+        <div class="navbar-right">
+            <a href="cart.html" class="cart" data-products="0">
+                <i class="fa-solid fa-cart-shopping"><span class="mybasket">My Basket</span></i>
+            </a>
         </div>
     </nav>
     <section class="section-items">
@@ -51,8 +51,6 @@
             </div>
         </div>
     </section>
-
     <script src="./app.js"></script>
 </body>
-
 </html>
