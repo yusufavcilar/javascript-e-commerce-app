@@ -1,4 +1,19 @@
-const categoriesItem = ["All", "Household Appliances", "Clothes", "Technological tools", "Mobile Phone"]
+const categoriesItem = [{
+    id: 1,
+    name: "All"
+}, {
+    id: 2,
+    name: "Household Appliances"
+}, {
+    id: 3,
+    name: "Clothes"
+}, {
+    id: 4,
+    name: "Technological tools"
+}, {
+    id: 5,
+    name: "Mobile Phone"
+}]
 const shopMenu = document.querySelector(".shop-menu")
 const cart = document.querySelector('.cart')
 const cartMenu = document.querySelector(".cart-menu")
@@ -12,7 +27,7 @@ const products = [{
         image: "./assets/refrigator.jpeg",
         price: 8799,
         priceUnit: 'TL',
-        category: "Household Appliances"
+        categoryID: 2
     },
     {
         id: 2,
@@ -21,7 +36,7 @@ const products = [{
         image: "./assets/süpürge.jpeg",
         price: 1299,
         priceUnit: 'TL',
-        category: "Household Appliances"
+        categoryID: 2
     },
     {
         id: 3,
@@ -30,7 +45,7 @@ const products = [{
         image: "./assets/huawei.jpeg",
         price: 18799,
         priceUnit: 'TL',
-        category: "Mobile Phone"
+        categoryID: 5
 
     },
     {
@@ -40,7 +55,7 @@ const products = [{
         image: "./assets/koltuk.jpeg",
         price: 2399,
         priceUnit: 'TL',
-        category: "Household Appliances"
+        categoryID: 2
 
     }, {
         id: 5,
@@ -49,8 +64,7 @@ const products = [{
         image: "./assets/eşortman.jpeg",
         price: 399,
         priceUnit: 'TL',
-        category: "Clothes"
-
+        categoryID: 3
     }, {
         id: 6,
         name: "Technological tools",
@@ -58,7 +72,7 @@ const products = [{
         image: "./assets/macbook.jpeg",
         price: 15799,
         priceUnit: 'TL',
-        category: "Technological tools"
+        categoryID: 4
 
     }, {
         id: 7,
@@ -67,7 +81,7 @@ const products = [{
         image: "./assets/xiaomi.jpeg",
         price: 10799,
         priceUnit: 'TL',
-        category: "Mobile Phone"
+        categoryID: 5
     }, {
         id: 8,
         name: "Household Appliances",
@@ -75,7 +89,7 @@ const products = [{
         image: "./assets/profilo.jpeg",
         price: 5799,
         priceUnit: 'TL',
-        category: "Household Appliances"
+        categoryID: 2
 
     }, {
         id: 9,
@@ -84,7 +98,7 @@ const products = [{
         image: "./assets/samsung s21.jpeg",
         price: 9799,
         priceUnit: 'TL',
-        category: "Mobile Phone"
+        categoryID: 5
 
     },
     {
@@ -94,7 +108,7 @@ const products = [{
         image: "./assets/monster.jpeg",
         price: 28799,
         priceUnit: 'TL',
-        category: "Technological tools"
+        categoryID: 4
     },
     {
         id: 11,
@@ -103,7 +117,7 @@ const products = [{
         image: "./assets/adidas.jpeg",
         price: 6499,
         priceUnit: 'TL',
-        category: "Clothes"
+        categoryID: 3
     },
     {
         id: 12,
@@ -112,7 +126,7 @@ const products = [{
         image: "./assets/iphone13.jpeg",
         price: 28799,
         priceUnit: 'TL',
-        category: "Mobile Phone"
+        categoryID: 5
 
     },
     {
@@ -122,7 +136,7 @@ const products = [{
         image: "./assets/bosch.jpeg",
         price: 12799,
         priceUnit: 'TL',
-        category: "Household Appliances"
+        categoryID: 2
     },
     {
         id: 14,
@@ -131,7 +145,7 @@ const products = [{
         image: "./assets/ütü.jpeg",
         price: 1699,
         priceUnit: 'TL',
-        category: "Household Appliances"
+        categoryID: 2
     },
     {
         id: 15,
@@ -140,23 +154,23 @@ const products = [{
         image: "./assets/iphone11.jpeg",
         price: 12799,
         priceUnit: 'TL',
-        category: "Mobile Phone"
+        categoryID: 5
     },
 ];
 
-
-let selectedCategory = "All"
+let selectedCategory = 1;
 
 function creatCategories() {
     categoriesItem.forEach((category) => {
-        btnContainer.innerHTML += `<button type="button" class="products-bar__categories" data-id="all">${category}</button>`
+        btnContainer.innerHTML += `<button type="button" class="products-bar__categories" data-id="${category.id}">${category.name}</button>`
     })
 
     const btnAll = document.querySelectorAll(".products-bar__categories")
 
     btnAll.forEach((btn) => {
         btn.addEventListener("click", (e) => {
-            selectedCategory = e.target.textContent;
+            selectedCategory = Number(e.target.getAttribute('data-id'))
+
             shopItems();
         })
     })
@@ -168,7 +182,7 @@ let basket = JSON.parse(localStorage.getItem('cart')) || [];
 function shopItems() {
     shopMenu.innerHTML = ""
     products.forEach(item => {
-        if (selectedCategory.toLowerCase() === "all") {
+        if (selectedCategory === 1) {
             shopMenu.innerHTML += `
             <div class="shop-menu__item" data-id="${item.id}">
                <img width="75" height="75" src="${item.image}" alt="${item.name}">
@@ -179,7 +193,7 @@ function shopItems() {
                </div>
            </div>`
         } else {
-            if (selectedCategory.toLowerCase() === item.category.toLowerCase()) {
+            if (selectedCategory === item.categoryID) {
                 shopMenu.innerHTML += `
                 <div class="shop-menu__item" data-id="${item.id}">
                    <img width="75" height="75" src="${item.image}" alt="${item.name}">
